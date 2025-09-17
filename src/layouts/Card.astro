@@ -1,0 +1,80 @@
+---
+// Define props for the card component
+export interface Props {
+    first: string;
+    last: string;
+    genre: string;
+    email: string;
+    picture: string;
+    location: string;
+    phone: string;
+    nat: string;
+}
+
+const { first, last, genre, email, picture, location, phone, nat } = Astro.props;
+---
+
+<article class="group relative overflow-hidden rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-black/5 transition-all duration-300 hover:shadow-2xl hover:-translate-y-0.5">
+        <div class="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-indigo-500 via-fuchsia-500 to-emerald-500 opacity-80"></div>
+
+        <div class="p-6">
+                <div class="flex items-center gap-4">
+                        <div class="relative">
+                                <span class="absolute inset-0 rounded-full bg-gradient-to-tr from-indigo-500 to-fuchsia-500 blur-md opacity-30 transition-opacity duration-300 group-hover:opacity-50"></span>
+                                <img
+                                        src={picture}
+                                        alt={`${first} ${last}`}
+                                        class="relative z-10 h-16 w-16 rounded-full ring-4 ring-white object-cover shadow-md"
+                                />
+                        </div>
+                        <div class="min-w-0">
+                                <h2 class="truncate text-xl font-semibold tracking-tight">{first} {last}</h2>
+                                <p class="mt-1 flex items-center gap-2 text-sm text-slate-600">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5A2.25 2.25 0 0 1 6 5.25h12A2.25 2.25 0 0 1 20.25 7.5v9A2.25 2.25 0 0 1 18 18.75H6A2.25 2.25 0 0 1 3.75 16.5v-9Z" />
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 7.5 7.34 4.59a2.25 2.25 0 0 0 2.32 0L20.25 7.5" />
+                                        </svg>
+                                        <span class="truncate">{email}</span>
+                                </p>
+                        </div>
+                </div>
+
+                <dl class="mt-6 space-y-3 text-sm">
+                        <div class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s7-5.33 7-11a7 7 0 1 0-14 0c0 5.67 7 11 7 11Z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                </svg>
+                                <div>
+                                        <dt class="sr-only">Location</dt>
+                                        <dd class="text-slate-700">{location}</dd>
+                                </div>
+                        </div>
+
+                        <div class="flex items-start gap-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-4 w-4 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.32 1.78.59 2.63a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.45-1.15a2 2 0 0 1 2.11-.45c.85.27 1.73.47 2.63.59A2 2 0 0 1 22 16.92Z" />
+                                </svg>
+                                <div>
+                                        <dt class="sr-only">Phone</dt>
+                                        <dd class="text-slate-700">{phone}</dd>
+                                </div>
+                        </div>
+                </dl>
+        </div>
+
+        <div class="px-6 pb-6">
+                <div class="flex items-center justify-between">
+                        <span class="inline-flex items-center gap-1 rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-700">
+                                <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                                {nat}
+                        </span>
+                        <button class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition-colors hover:bg-slate-50">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 text-slate-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M12.293 4.293a1 1 0 0 1 1.414 0l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 1 1-1.414-1.414L14.586 11H4a1 1 0 1 1 0-2h10.586l-2.293-2.293a1 1 0 0 1 0-1.414Z" />
+                                </svg>
+                                View profile
+                        </button>
+                </div>
+        </div>
+</article>

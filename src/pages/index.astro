@@ -1,7 +1,55 @@
 ---
-import BasicLayout from "../layouts/BasicLayout.astro"
+import BasicLayout from "../layouts/BasicLayout.astro";
+import Card from "../layouts/Card.astro";
+import CardMinimal from "../layouts/CardMinimal.astro";
+
+const responseData = await fetch("https://randomuser.me/api/?results=50");
+const users = await responseData.json();
 ---
 
-<BasicLayout>
-  <h1 class="text-4xl font-bold underline">Hello world!!!</h1>
+<BasicLayout title="User Cards">
+  <svg xmlns="http://www.w3.org/2000/svg" width="64" height="56" fill="none" viewBox="0 0 64 56" aria-hidden="true" class="css-1qlgdw4 ml-8 mt-10"><g fill="red"><path d="M29.866 0v24.286H14.79V26h.143c8.246 0 14.93 6.715 14.93 15 0 8.283-6.684 14.999-14.93 14.999C6.685 56 0 49.284 0 41q0-.215.006-.428H0V17.143C0 7.675 7.64 0 17.064 0zM64 0v24.286H48.923V26h.142c8.247 0 14.931 6.715 14.931 15 0 8.283-6.684 14.999-14.93 14.999-8.247 0-14.932-6.716-14.932-15q0-.215.006-.428h-.006V17.143C34.134 7.675 41.774 0 51.198 0z"></path></g></svg>
+  <h1 class="text-6xl ml-8 mt-8">User Cards</h1>
+  <section class="relative px-4 py-10 sm:px-6 lg:px-8">
+    <div aria-hidden="true" class="pointer-events-none absolute -top-10 -right-10 h-64 w-64 bg-gradient-to-br from-indigo-400/30 to-fuchsia-400/30 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute -bottom-16 -left-10 h-72 w-72 bg-gradient-to-tr from-cyan-400/30 to-emerald-400/30 blur-3xl"></div>
+
+    <div class="mx-auto max-w-7xl">
+      <div class="overflow-hidden w-full">
+        <div class="flex mb-4 items-stretch gap-4 [animation:cardScrollLTR_25s_linear_infinite] hover:[animation-play-state:paused]">
+          {users.results.map((user: any) => (
+          <div class="shrink-0 w-80">
+            <CardMinimal
+              first={user.name.first}
+              last={user.name.last}
+              genre={user.gender}
+              email={user.email}
+              picture={user.picture.large}
+              location={`${user.location.city}, ${user.location.country}`}
+              phone={user.phone}
+              nat={user.nat}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div class="flex items-stretch gap-4 [animation:cardScroll_25s_linear_infinite] hover:[animation-play-state:paused]">
+          {users.results.map((user: any) => (
+          <div class="shrink-0 w-80">
+            <CardMinimal
+              first={user.name.first}
+              last={user.name.last}
+              genre={user.gender}
+              email={user.email}
+              picture={user.picture.large}
+              location={`${user.location.city}, ${user.location.country}`}
+              phone={user.phone}
+              nat={user.nat}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
 </BasicLayout>

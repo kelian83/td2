@@ -1,1 +1,49 @@
 @import "tailwindcss";
+
+body {
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+}
+
+@theme {
+    @keyframes cardScroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-100%);
+        }
+    }
+
+    /* Variante gauche -> droite */
+    @keyframes cardScrollLTR {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    --card-scroll-animation: {
+        animation: cardScroll 15s linear infinite;
+    };
+
+    --card-scroll-container: {
+        display: flex;
+        overflow: hidden;
+        width: 100%;
+    };
+
+    --card-scroll-wrapper: {
+        display: flex;
+        gap: 1rem;
+        animation: var(--card-scroll-animation);
+    };
+
+    --card-scroll-wrapper-pause: {
+        &:hover {
+            animation-play-state: paused;
+        }
+    };
+}
